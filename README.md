@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wassby Sweet - Catálogo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-dark: #3a2318;
+            --text-light: #7a6a63;
+            --accent-pink: #d98a8a;
+            --card-bg: #ffffff;
+            --gold: #c4a47c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.01) 10px, rgba(0,0,0,0.01) 11px);
+            padding-bottom: 0px;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .logo-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 2px dashed #e0d5c1;
+            padding: 5px;
+            background-color: white;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .location-text {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .brand-name .sweet {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-pink);
+            font-weight: 600;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .quote span {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* --- INTRO SECCIÓN --- */
+        .intro-section {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .intro-subtitle {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-pink);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .intro-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .intro-title span {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .intro-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* --- CATEGORÍAS (CHIPS) --- */
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .chip {
+            background-color: var(--card-bg);
+            border: 1px solid #efe8df;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .chip i {
+            color: var(--accent-pink);
+        }
+
+        .chip .count {
+            background-color: #f5eedf;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        .chip.active {
+            background-color: var(--text-dark);
+            color: white;
+            border-color: var(--text-dark);
+        }
+
+        .chip.active i {
+            color: var(--gold);
+        }
+
+        .chip.active .count {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* --- CATÁLOGO PRODUCTOS --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-image-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .price-tag {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: white;
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 8px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .product-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-order {
+            display: block;
+            width: 100%;
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-order:active {
+            transform: scale(0.98);
+        }
+
+        .btn-order i {
+            color: #25D366; 
+            margin-right: 8px;
+            font-size: 1.2rem;
+            vertical-align: middle;
+        }
+
+        /* --- FOOTER SECCIÓN --- */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background-color: var(--card-bg);
+            border-top: 1px solid #efe8df;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 15px;
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a i.fa-instagram {
+            color: #E1306C;
+        }
+
+        .social-links a i.fa-tiktok {
+            color: #000000;
+        }
+
+        .footer-phone {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .footer-phone i {
+            color: var(--accent-pink);
+            margin-right: 5px;
+        }
+
+        .footer-credits {
+            color: #b0a39e;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Wassby Sweet Logo">
+        </div>
+        <div class="location-text">REPOSTERÍA ARTESANAL · MANAGUA, NICARAGUA</div>
+        <h1 class="brand-name">Wassby <span class="sweet">Sweet</span></h1>
+        <p class="quote"><span>“</span> Un pedacito de cielo en cada bocado. <span>”</span></p>
+    </header>
+
+    <section class="intro-section">
+        <div class="intro-subtitle">— Nuestro Menú</div>
+        <h2 class="intro-title">Endulzamos <span>tus<br>momentos</span></h2>
+        <p class="intro-desc">Toca <strong>Pedir ahora</strong> o <strong>Consultar precio</strong> y te atendemos directo por WhatsApp. Hacemos pedidos personalizados.</p>
+    </section>
+
+    <nav class="categories-container">
+        <div class="chip active">
+            <i class="fa-solid fa-cookie"></i> Todos <span class="count">15</span>
+        </div>
+        <div class="chip">
+            <i class="fa-solid fa-ice-cream"></i> Postres en Vaso <span class="count">7</span>
+        </div>
+        <div class="chip">
+            <i class="fa-solid fa-cake-candles"></i> Tortas <span class="count">5</span>
+        </div>
+        <div class="chip">
+            <i class="fa-solid fa-mug-hot"></i> Cupcakes <span class="count">1</span>
+        </div>
+        <div class="chip">
+            <i class="fa-solid fa-heart"></i> Tradicional / Gelatinas <span class="count">2</span>
+        </div>
+    </nav>
+
+    <div class="products-grid">
+        
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="1.jpeg" alt="Postre Mosaico">
+                <div class="price-tag">C$110</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Mosaico</h3>
+                <p class="product-desc">Capas de felicidad listas para alegrar tu día en una presentación práctica.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20un%20Mosaico" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="2.jpeg" alt="Gelatina Tres Leches">
+                <div class="price-tag">C$600</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Gelatina Tres Leches</h3>
+                <p class="product-desc">La suavidad perfecta hecha postre. El toque elegante y tradicional para compartir en familia.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Gelatina%20Tres%20Leches" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="3.jpeg" alt="Torta de Atolillo">
+                <div class="price-tag">C$120</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta de Atolillo</h3>
+                <p class="product-desc">Un clásico espectacular con el sabor de casa y un toque exquisito de canela.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Torta%20de%20Atolillo" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="4.jpeg" alt="Torta de Chocolate">
+                <div class="price-tag">C$150</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta de Chocolate con Crema</h3>
+                <p class="product-desc">Deliciosa base húmeda de chocolate cubierta con abundante y suave crema.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Torta%20de%20Chocolate%20con%20Crema" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="5.jpeg" alt="Torta de Piña">
+                <div class="price-tag">C$150</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta de Piña</h3>
+                <p class="product-desc">Esponjosa y jugosa torta con el inconfundible sabor dulce y tropical de la piña.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Torta%20de%20Piña" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="6.jpeg" alt="Tres Leches de Chocolate">
+                <div class="price-tag">C$100</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Tres Leches de Chocolate</h3>
+                <p class="product-desc">La fusión perfecta del tradicional tres leches con el irresistible y decadente sabor a chocolate.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20un%20Tres%20Leches%20de%20Chocolate" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="7.jpeg" alt="Porción Torta de Chocolate">
+                <div class="price-tag">C$70</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta de Chocolate (Porción)</h3>
+                <p class="product-desc">Extremadamente dulce y esponjosa, finamente decorada con exquisito dulce de leche.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Porción%20de%20Torta%20de%20Chocolate" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir now
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="8.jpeg" alt="Cupcakes">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Cupcakes Especiales</h3>
+                <p class="product-desc">Detalles llenos de amor. Disponibles en deliciosos sabores clásicos: Vainilla y Chocolate.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20consultar%20por%20los%20Cupcakes" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Consultar precio
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="9.png" alt="Torta de Mermelada de Piña en vaso">
+                <div class="price-tag">C$60</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta de Mermelada de Piña</h3>
+                <p class="product-desc">Capas de bizcocho suave intercaladas con una deliciosa y fresca mermelada de piña.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20la%20Torta%20de%20Mermelada%20de%20Piña" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="10.png" alt="Torta con Mermelada de Fresa en vaso">
+                <div class="price-tag">C$60</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta con Mermelada de Fresa</h3>
+                <p class="product-desc">El postre perfecto para llevar, combinando el mejor bizcocho con una dulce mermelada de fresa.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20la%20Torta%20con%20Mermelada%20de%20Fresa" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="11.jpeg" alt="Mousse de Maracuyá">
+                <div class="price-tag">C$90</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Mousse de Maracuyá</h3>
+                <p class="product-desc">Deliciosa textura increíblemente cremosa con el equilibrio perfecto entre dulce y el toque cítrico del maracuyá.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20un%20Mousse%20de%20Maracuyá" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="12.jpeg" alt="Postre Wassby Especial en Vaso">
+                <div class="price-tag">C$100</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Copa Wassby Especial</h3>
+                <p class="product-desc">Nuestra especialidad en capas de bizcocho suave y crema deliciosa, el postre perfecto de la casa para llevar.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Copa%20Wassby%20Especial" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="13.jpeg" alt="Torta Especial de Cumpleaños">
+                <div class="price-tag">C$600</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Torta Especial para Celebrar</h3>
+                <p class="product-desc">Ideal para tus festejos. Cubierta de suave crema y decorada delicadamente con un exquisito enrejado de dulce de leche.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Torta%20Especial%20para%20Celebrar" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="14.jpeg" alt="Pío Quinto en Vaso">
+                <div class="price-tag">C$90</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Pío Quinto</h3>
+                <p class="product-desc">Un tesoro de la tradición nicaragüense. Bizcocho exquisitamente húmedo coronado con una suave capa muy cremosa.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20un%20Pío%20Quinto" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+        <article class="product-card">
+            <div class="product-image-container">
+                <img src="15.jpeg" alt="Gelatina de Durazno">
+                <div class="price-tag">C$100</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Gelatina de Durazno</h3>
+                <p class="product-desc">Una porción dulce y sumamente suave, rebosante del delicioso y refrescante sabor a durazno.</p>
+                <a href="https://wa.me/50585140940?text=Hola,%20quisiera%20pedir%20una%20Gelatina%20de%20Durazno" class="btn-order" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Pedir ahora
+                </a>
+            </div>
+        </article>
+
+    </div>
+
+    <footer class="footer">
+        <p class="footer-title">Síguenos en nuestras redes</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/wassby_sweat" target="_blank">
+                <i class="fa-brands fa-instagram"></i> @wassby_sweat
+            </a>
+            <a href="https://www.tiktok.com/@wassby_sweat" target="_blank">
+                <i class="fa-brands fa-tiktok"></i> @wassby_sweat
+            </a>
+        </div>
+        <p class="footer-phone">
+            <i class="fa-solid fa-phone"></i> +505 8514 0940
+        </p>
+        <p class="footer-credits">&copy; 2026 Wassby Sweet. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const chips = document.querySelectorAll('.chip');
+        
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
